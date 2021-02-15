@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri&family=Gothic+A1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+@import url(../css/header.css);
+@import url(../css/service.css);
+@import url(../css/benefits.css);
+@import url(../css/info.css);
+@import url(../css/reviews.css);
+@import url(../css/demonstrate.css);
+@import url(../css/popup.css);
+@import url(../css/footer.css);
+
+
+body {
+    font-size: 18px;
+    font-family: 'Gothic A1', sans-serif;
+    color: #002B40;
+}
