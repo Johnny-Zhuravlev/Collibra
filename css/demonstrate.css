@@ -1,0 +1,253 @@
+/* Demonstrate */
+.demonstrate {
+    display: flex;
+    padding: 125px 0 100px;
+
+    background-color: #DFE6E8;
+}
+.demonstrate__img {
+    width: 700px;
+    margin-right: 130px;
+}
+.demonstrate__img img {
+    width: 100%;
+}
+.tablet--img {
+    display: none;
+}
+.demonstrate-info {
+    max-width: 420px;
+    padding-top: 75px;
+}
+.demonstrate__title {
+    margin-bottom: 25px;
+
+    font-size: 36px;
+    line-height: 42px;
+}
+.list__point {
+    padding-left: 40px;
+
+    font-size: 18px;
+    font-family: 'Amiri', serif;
+    line-height: 32px;
+}
+.demonstrate__link {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 15px 45px;
+
+    font-size: 16px;
+    text-decoration: none;
+    color: inherit;
+
+    background-color: #72BF00;
+
+    transition: all .25s linear;
+}
+.demonstrate__link:hover {
+    color: #fff;
+    background-color: #00755F;
+}
+.demonstrate__link:active {
+    background-color: #024e40;
+}
+
+
+
+/* Media Queries */
+@media (min-width : 1530px) {
+    .demonstrate__img {
+        width: 50%;
+    }
+    .demonstrate-info {
+        padding-top: 95px;
+    }
+    .demonstrate__title {
+        font-size: 38px;
+    }
+    .list__point {
+        font-size: 20px;
+    }
+}
+
+
+@media (min-width : 1664px) {
+    .demonstrate {
+        padding: 145px 0 120px;
+    }
+    .demonstrate__img {
+        width: 55%;
+    }
+    .demonstrate-info {
+        max-width: 36%;
+        padding-top: 120px;
+    }
+    .demonstrate__title {
+        margin-bottom: 30px;
+
+        font-size: 44px;
+        line-height: 56px;
+    }
+    .list__point {
+        font-size: 22px;
+    }
+    .demonstrate__link {
+        margin-top: 30px;
+
+        font-size: 18px;
+        line-height: 18px;
+    }
+}
+
+
+
+@media (min-width : 1920px) {
+    .demonstrate {
+        padding: 165px 0 135px;
+    }
+    .demonstrate-info {
+        padding-top: 145px;
+    }
+    .demonstrate__title {
+        margin-bottom: 35px;
+
+        font-size: 52px;
+    }
+    .list__point {
+        font-size: 24px;
+        line-height: 36px;
+    }
+    .demonstrate__link {
+        margin-top: 35px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        font-size: 22px;
+        line-height: 24px;
+    }
+}
+
+
+
+@media (max-width: 1280px) {
+    .demonstrate {
+        justify-content: space-between;
+    }
+    .demonstrate__img {
+        width: 600px;
+        margin-right: 0;
+    }
+    .demonstrate__title {
+        font-size: 28px;
+        line-height: 32px;
+    }
+    .demonstrate-info {
+        max-width: unset;
+        width: 40.5%;
+        padding-top: 70px;
+    }
+    .list__point {
+        padding-left: 35px;
+
+        font-size: 17px;
+        line-height: 24px;
+    }
+}
+
+
+
+@media (max-width : 991px) {
+    .demonstrate {
+        padding: 80px 0 60px;
+    }
+    .demonstrate__img {
+        width: 450px;
+    }
+    .demonstrate-info {
+        width: 45%;
+        padding-top: 35px;
+    }
+    .demonstrate__title {
+        margin-bottom: 15px;
+        font-size: 26px;
+    }
+    .list__point {
+        padding-left: 20px;
+
+        font-size: 16px;
+    }
+    .demonstrate__link {
+        padding: 15px 35px;
+    }
+}
+
+
+@media (max-width : 768px) {
+    .demonstrate {
+        flex-wrap: wrap;
+    }
+    .demonstrate__img {
+        width: 100%;
+        height: 310px;
+        margin-bottom: 45px;
+
+        position: relative;
+    }
+    .demonstrate__img img {
+        display: none;
+    }
+    .demonstrate__img .tablet--img {
+        display: block;
+        width: 500px;
+
+        position: absolute;
+        left: 54%;
+
+        transform: translateX(-50%);
+    }
+    .demonstrate-info {
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 0;
+        text-align: center;
+    }
+    .list__point {
+        padding-left: 0;
+    }
+}
+
+
+
+@media (max-width : 568px) {
+    .demonstrate__img {
+        height: 240px;
+    }
+    .demonstrate__img .tablet--img {
+        width: 390px;
+    }
+}
+
+
+@media (max-width : 432px) {
+    .demonstrate {
+        padding: 45px 0;
+    }
+    .demonstrate__title {
+        font-size: 24px;
+    }
+    .demonstrate__img {
+        display: none;
+    }
+}
+
+
+@media (max-width : 360px) {
+    .demonstrate {
+        padding: 40px 0;
+    }
+    .demonstrate__link {
+        padding: 15px 25px;
+        font-size: 15px;
+    }
+}
