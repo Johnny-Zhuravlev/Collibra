@@ -847,7 +847,7 @@
 
 
 
-@media (max-width : 360px) {
+@media (max-width : 375px) {
     .data-list__title {
         display: none;
     }
