@@ -31,7 +31,7 @@
       </button>
       <!-- Btn trigger for settings -->
       <button class="flex p-1 sm:p-2 relative group focus:outline-none">
-        <BaseIcon name="settings" class="w-5 h-5" />
+        <BaseIcon name="settingsDots" class="w-5 h-5" />
         <!-- Settings Dropdown list -->
         <TheDropdownSettings />
       </button>
@@ -42,12 +42,12 @@
 </template>
 
 <script>
-import LogoMain from './LogoMain.vue'
-import BaseIcon from '../BaseIcon.vue'
-import TheSearch from './TheSearch.vue'
-import TheDropdownOptions from './TheDropdownOptions.vue'
-import TheDropdownSettings from './TheDropdownSettings.vue'
-import BtnLogin from './BtnLogin.vue'
+import LogoMain from './header/LogoMain.vue'
+import BaseIcon from './BaseIcon.vue'
+import TheSearch from './header/TheSearch.vue'
+import TheDropdownOptions from './header/TheDropdownOptions.vue'
+import TheDropdownSettings from './header/TheDropdownSettings.vue'
+import BtnLogin from './header/BtnLogin.vue'
 
 export default {
   components: {

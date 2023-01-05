@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TheHeader from "./components/header/TheHeader.vue";
+import TheHeader from "./components/TheHeader.vue";
 import TheSidebarMobile from "./components/TheSidebarMobile.vue";
 import TheSidebarSmall from "./components/TheSidebarSmall.vue";
 import TheSidebar from "./components/TheSidebar.vue";
