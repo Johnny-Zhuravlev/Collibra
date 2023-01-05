@@ -1,10 +1,30 @@
-<script setup>
-
-</script>
-
 <template>
-  <h1 class="text-blue-700 text-2xl font-bold">YouTube Replica</h1>
+  <TheHeader />
+  <TheSidebarMobile />
+  <TheSidebarSmall />
+  <TheSidebar />
+  <TheCategories />
+  <TheVideos />
 </template>
+
+<script>
+import TheHeader from "./components/TheHeader.vue";
+import TheSidebarMobile from "./components/TheSidebarMobile.vue";
+import TheSidebarSmall from "./components/TheSidebarSmall.vue";
+import TheSidebar from "./components/TheSidebar.vue";
+import TheCategories from "./components/TheCategories.vue";
+import TheVideos from "./components/TheVideos.vue";
+  export default {
+    components: {
+      TheHeader,
+      TheSidebarMobile,
+      TheSidebarSmall,
+      TheSidebar,
+      TheCategories,
+      TheVideos
+    }
+  }
+</script>
 
 <style scoped>
 
