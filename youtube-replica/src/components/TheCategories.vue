@@ -1,19 +1,7 @@
 <template>
-  <section
-  class="w-full pt-12 sm:pt-14 md:pl-24 xl:pl-60 fixed bg-white bg-opacity-95 z-10"
->
+  <section :class="classes">
     <div class="py-2 px-2 sm:px-4 border-t border-b">
-      <div
-        class="
-          max-w-screen-2xl
-          m-auto
-          flex
-          space-x-3
-          overflow-auto
-          text-sm
-          whitespace-norwap
-        "
-      >
+      <div class="max-w-screen-2xl m-auto flex space-x-3 overflow-auto text-sm whitespace-norwap">
         <CategoryItem
           v-for="category in categories"
           :key="category"
@@ -23,14 +11,13 @@
       </div>
     </div>
   </section>
-
 </template>
 
 <script>
-import CategoryItem from "./CategoryItem.vue";
+import CategoryItem from './CategoryItem.vue'
 
- export default {
-  data() {
+export default {
+  data () {
     return {
       categories: [
         'All',
@@ -58,11 +45,26 @@ import CategoryItem from "./CategoryItem.vue";
     }
   },
   components: {
-    CategoryItem,
+    CategoryItem
+  },
+  props: {
+    isSidebarOpen: Boolean
+  },
+  computed: {
+    classes() {
+      return [
+        this.isSidebarOpen ? 'xl:pl-60' : 'md:pl-24',
+        'w-full',
+        'pt-12',
+        'sm:pt-14',
+        'fixed',
+        'bg-white',
+        'bg-opacity-95',
+        'z-10',
+      ]
+    }
   }
- }
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,30 +1,13 @@
 <template>
   <aside
-    class="
-      hidden
-      md:block
-      min-h-screen
-      pt-14
-      overflow-auto
-      fixed
-      top-0
-      bg-white
-      z-20
-    "
+    :class="classes"
   >
     <section>
       <ul>
         <li>
           <a
             href="/"
-            class="
-              flex flex-col
-              items-center
-              px-2
-              py-5
-              text-red-500
-              hover:bg-gray-100
-            "
+            class="flex flex-col items-center px-2 py-5 text-red-500 hover:bg-gray-100"
           >
             <span class="flex mb-1.5">
               <svg
@@ -152,9 +135,19 @@
 </template>
 
 <script>
-
+export default {
+  computed: {
+    classes() {
+      return [
+        'min-h-screen',
+        'pt-14',
+        'overflow-auto',
+        'fixed',
+        'top-0',
+        'bg-white',
+        'z-20',
+      ]
+    }
+  }
+}
 </script>
-
-<style>
-
-</style>

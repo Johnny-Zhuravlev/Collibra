@@ -1,7 +1,10 @@
 <template>
   <header class="flex justify-between w-full fixed z-30">
     <div class="flex items-center lg:w-1/5 md:pl-4 pl-2">
-      <button class="sm:pl-2 md:pr-6 pr-2 focus:outline-none">
+      <button
+        @click="$emit('toggleSidebar')"
+        class="sm:pl-2 md:pr-6 pr-2 focus:outline-none"
+      >
         <BaseIcon name="menu" />
       </button>
       <LogoMain />
@@ -57,6 +60,9 @@ export default {
     TheDropdownOptions,
     TheDropdownSettings,
     BtnLogin
+  },
+  emits: {
+    toggleSidebar: null
   }
 }
 </script>
