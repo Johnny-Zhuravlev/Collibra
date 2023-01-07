@@ -35,9 +35,9 @@ export default {
     }
   },
   mounted() {
-    if (window.innerWidth >= 768 && window.innerWidth < 1280) {
-      this.sidebarState = 'small';
-    }
+    // if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+    //   this.sidebarState = 'small';
+    // }
     if (window.innerWidth >= 1280) {
       this.sidebarState = 'normal';
     }
@@ -56,6 +56,7 @@ export default {
       } else {
         this.isSidebarOpen = this.sidebarState === 'normal';
         this.isSmallSidebarOpen = this.sidebarState === 'small';
+        this.isMobileSidebarOpen = false;
       }
     },
     toggleSidebar() {

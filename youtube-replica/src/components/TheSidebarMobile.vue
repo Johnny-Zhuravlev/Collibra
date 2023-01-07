@@ -24,7 +24,7 @@
   >
     <aside
       v-show="isOpen"
-      class="w-60 max-h-screen overflow-auto bg-white fixed inset-0 z-50"
+      class="w-60 max-h-screen overflow-auto bg-white fixed inset-0 z-50 focus:outline-none"
       @keyup.esc="$emit('closeMobileSidebar')"
       ref="mobileSidebar"
       tabindex="-1"

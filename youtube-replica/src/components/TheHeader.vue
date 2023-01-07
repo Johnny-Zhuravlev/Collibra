@@ -26,18 +26,11 @@
       <button class="sm:hidden p-1 sm:p-2 focus:outline-none">
         <BaseIcon name="search" class="w-5 h-5" />
       </button>
-      <!-- Btn-trigger for YouTube options list -->
-      <button class="flex p-1 sm:p-2 relative group focus:outline-none">
-        <BaseIcon name="options" class="w-5 h-5" />
-        <!-- List options of app -->
-        <TheDropdownOptions />
-      </button>
-      <!-- Btn trigger for settings -->
-      <button class="flex p-1 sm:p-2 relative group focus:outline-none">
-        <BaseIcon name="settingsDots" class="w-5 h-5" />
-        <!-- Settings Dropdown list -->
-        <TheDropdownSettings />
-      </button>
+
+      <!-- List options of app -->
+      <TheDropdownOptions />
+      <!-- Settings Dropdown list -->
+      <TheDropdownSettings />
 
       <BtnLogin />
     </div>
