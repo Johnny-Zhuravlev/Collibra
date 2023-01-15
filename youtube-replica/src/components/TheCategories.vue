@@ -60,11 +60,9 @@ export default {
         'fixed',
         'bg-white',
         'bg-opacity-95',
-        'z-10',
+        'z-20',
       ]
     }
   }
 }
 </script>
-
-<style scoped></style>
