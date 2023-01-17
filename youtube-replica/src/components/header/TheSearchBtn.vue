@@ -14,8 +14,8 @@ import BaseTooltip from "../BaseTooltip.vue";
 
 export default {
   components: {
+    BaseTooltip,
     BaseIcon,
-    BaseTooltip
   },
   computed: {
     btnClasses() {
