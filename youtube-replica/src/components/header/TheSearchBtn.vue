@@ -1,16 +1,14 @@
 <template>
   <BaseTooltip text="Search">
-    <button
-      :class="btnClasses"
-    >
+    <button :class="btnClasses">
       <BaseIcon name="search" class="w-5 h-5" />
     </button>
   </BaseTooltip>
 </template>
 
 <script>
-import BaseIcon from "../BaseIcon.vue";
 import BaseTooltip from "../BaseTooltip.vue";
+import BaseIcon from "../BaseIcon.vue";
 
 export default {
   components: {

@@ -1,7 +1,7 @@
 <template>
 	<div class="relative">
 		<div
-			class="h-full"
+			class="h-full flex"
 			@mouseenter="toogleTooltip"
 			@mouseleave="toogleTooltip"
 		>
@@ -35,7 +35,7 @@ export default {
 		classes() {
 			return [
 					'bg-gray-600',
-					'bg-opacity-80',
+					'bg-opacity-85',
 					'rounded-sm',
 					'text-white',
 					'text-xs',

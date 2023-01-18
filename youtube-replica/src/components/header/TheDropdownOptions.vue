@@ -1,12 +1,14 @@
 <template>
   <div class="relative">
-    <!-- Btn-trigger for opening options list -->
-    <button
-      class="flex p-1 sm:p-2 focus:outline-none"
-      @click="isOpen = !isOpen"
-    >
-      <BaseIcon name="options" class="w-5 h-5" />
-    </button>
+    <BaseTooltip text="YouTube Apps">
+      <!-- Btn-trigger for opening options list -->
+      <button
+        class="flex p-1 sm:p-2 focus:outline-none"
+        @click="isOpen = !isOpen"
+      >
+        <BaseIcon name="options" class="w-5 h-5" />
+      </button>
+    </BaseTooltip>
 
     <!-- List options of app -->
     <transition
@@ -47,6 +49,7 @@
 </template>
 
 <script>
+import BaseTooltip from "../BaseTooltip.vue";
 import BaseIcon from '../BaseIcon.vue'
 import DropdownOptionsItem from './DropdownOptionsItem.vue';
 
@@ -59,6 +62,7 @@ export default {
     })
   },
   components: {
+    BaseTooltip,
     BaseIcon,
     DropdownOptionsItem
   },
