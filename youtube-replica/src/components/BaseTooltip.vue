@@ -2,8 +2,9 @@
 	<div class="relative">
 		<div
 			class="h-full flex"
-			@mouseenter="toogleTooltip"
-			@mouseleave="toogleTooltip"
+			@mouseenter="this.isShown = true"
+			@mouseleave="this.isShown = false"
+			@click="this.isShown = false"
 		>
 			<slot />
 		</div>
@@ -25,6 +26,7 @@ export default {
 	name: 'BaseTooltip',
 	props: {
 		text: String,
+		top: Boolean
 	},
 	data() {
 		return {
@@ -34,26 +36,21 @@ export default {
 	computed: {
 		classes() {
 			return [
-					'bg-gray-600',
-					'bg-opacity-85',
-					'rounded-sm',
-					'text-white',
-					'text-xs',
-					'whitespace-nowrap',
-					'p-2',
-					'absolute',
-					'top-12',
-					'left-1/2',
-					'transform',
-					'-translate-x-1/2'
+				'bg-gray-600',
+				'bg-opacity-85',
+				'rounded-sm',
+				'text-white',
+				'text-xs',
+				'whitespace-nowrap',
+				'p-2',
+				'absolute',
+				'left-1/2',
+				'transform',
+				'-translate-x-1/2',
+				this.top ? '-top-9' : 'top-12'
 			]
 		}
 	},
-	methods: {
-		toogleTooltip() {
-			this.isShown = !this.isShown
-		}
-	}
 }
 </script>
 

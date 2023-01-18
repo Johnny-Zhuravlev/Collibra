@@ -24,7 +24,7 @@
         @keyup.esc="isOpen = false"
         ref="dropdown"
         tabindex="-1"
-        class="w-48 sm:w-72 py-2 absolute top-9 right-0 bg-white rounded-md shadow-md focus:outline-none"
+        :class="dropdownClasses"
       >
         <section class="pb-2 border-b border-gray-400">
           <ul>
@@ -123,6 +123,23 @@ export default {
   watch: {
     isOpen () {
       this.$nextTick(() => this.isOpen && this.$refs.dropdown.focus())
+    }
+  },
+  computed: {
+    dropdownClasses() {
+      return [
+        'w-48',
+        'sm:w-72',
+        'py-2',
+        'absolute',
+        'top-9',
+        'right-0',
+        'bg-white r',
+        'ounded-md',
+        'shadow-md',
+        'focus:outline-none',
+        'z-10',
+      ]
     }
   }
 }
