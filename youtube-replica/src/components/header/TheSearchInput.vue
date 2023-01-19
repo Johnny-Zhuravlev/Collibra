@@ -6,6 +6,14 @@
   />
 </template>
 
-<script></script>
+<script>
+export default {
+  mounted() {
+    if (window.innerWidth < 640) {
+      this.$el.focus()
+    }
+  }
+}
+</script>
 
 <style scoped></style>

@@ -26,31 +26,42 @@ export default {
 	name: 'BaseTooltip',
 	props: {
 		text: String,
-		top: Boolean
+		top: Boolean,
+		right: Boolean,
+		left: Boolean
 	},
 	data() {
 		return {
 			isShown: false,
-		}
-	},
-	computed: {
-		classes() {
-			return [
+			classes: [
 				'bg-gray-600',
 				'bg-opacity-85',
-				'rounded-sm',
+				'rounded-lg',
 				'text-white',
 				'text-xs',
 				'whitespace-nowrap',
 				'p-2',
 				'absolute',
-				'left-1/2',
 				'transform',
-				'-translate-x-1/2',
-				this.top ? '-top-9' : 'top-12'
+				...this.getPositionClasses()
 			]
 		}
 	},
+	methods: {
+		getPositionClasses() {
+			const topClass = this.top ? '-top-9' : 'top-12'
+
+			if (this.right) {
+				return [topClass, 'left-0']
+			}
+
+			if (this.left) {
+				return [topClass, 'right-0']
+			}
+
+			return [topClass, 'left-1/2', '-translate-x-1/2']
+		}
+	}
 }
 </script>
 
