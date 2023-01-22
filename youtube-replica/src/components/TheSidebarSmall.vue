@@ -36,12 +36,11 @@ export default {
     classes() {
       return [
         "min-h-screen",
-        "pt-14",
         "overflow-auto",
         "fixed",
-        "top-0",
+        "top-14",
         "bg-white",
-        "z-20",
+        "z-30",
       ];
     }
   },

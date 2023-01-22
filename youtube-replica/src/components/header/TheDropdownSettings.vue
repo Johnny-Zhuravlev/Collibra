@@ -3,7 +3,7 @@
     <BaseTooltip text="Settings">
       <!-- Btn-trigger for opening settings list -->
       <button
-        @click="isOpen = !isOpen"
+        @click="toggle"
         class="flex p-1 sm:p-2 focus:outline-none"
       >
         <BaseIcon name="settingsDots" class="w-5 h-5" />
@@ -21,30 +21,17 @@
     >
       <div
         v-show="isOpen"
-        @keyup.esc="isOpen = false"
+        @keyup.esc="close"
         ref="dropdown"
         tabindex="-1"
-        :class="dropdownClasses"
+        :class="classes"
       >
-        <section class="pb-2 border-b border-gray-400">
-          <ul>
-            <DropdownSettingsItem
-              v-for="item of settingsList.slice(0, 8)"
-              :key="item.label"
-              :label="item.label"
-              :name="item.iconName"
-              :has-submenu="item.hasSubmenu"
-            />
-          </ul>
-        </section>
-        <section class="pt-2">
-          <ul>
-            <DropdownSettingsItem
-              :label="settingsList[8].label"
-              :has-submenu="settingsList[8].hasSubmenu"
-            />
-          </ul>
-        </section>
+        <component
+          :is="menu"
+          @select-menu="showMenu"
+          @select-point="selectPoint"
+          :selected-points="selectedPoints"
+        />
       </div>
     </transition>
   </div>
@@ -53,81 +40,41 @@
 <script>
 import BaseTooltip from '../BaseTooltip.vue'
 import BaseIcon from '../BaseIcon.vue'
-import DropdownSettingsItem from './DropdownSettingsItem.vue'
+import TheDropdownSettingsMain from './TheDropdownSettingsMain.vue'
+import TheDropdownSettingsAppearance from './TheDropdownSettingsAppearance.vue'
+import TheDropdownSettingsLang from './TheDropdownSettingsLang.vue'
+import TheDropdownSettingsLocation from './TheDropdownSettingsLocation.vue'
+import TheDropdownSettingsRestrictedMode from './TheDropdownSettingsRestrictedMode.vue'
 
 export default {
   mounted () {
     window.addEventListener('click', event => {
       if (!this.$el.contains(event.target)) {
-        this.isOpen = false
+        this.close()
       }
     })
   },
+  emits: ['select-menu', 'select-point'],
   components: {
-	BaseTooltip,
+	  BaseTooltip,
     BaseIcon,
-    DropdownSettingsItem
+    TheDropdownSettingsMain,
+    TheDropdownSettingsAppearance,
+    TheDropdownSettingsLang,
+    TheDropdownSettingsLocation,
+    TheDropdownSettingsRestrictedMode,
   },
   data () {
     return {
       isOpen: false,
-      settingsList: [
-        {
-          label: 'Appearance: Device theme',
-          iconName: 'appearance',
-          hasSubmenu: true
-        },
-        {
-          label: 'Language: English',
-          iconName: 'lang',
-          hasSubmenu: true
-        },
-        {
-          label: 'Location: Costa-Rica',
-          iconName: 'location',
-          hasSubmenu: true
-        },
-        {
-          label: 'Settings',
-          iconName: 'settings',
-          hasSubmenu: false
-        },
-        {
-          label: 'Security Data',
-          iconName: 'security',
-          hasSubmenu: false
-        },
-        {
-          label: 'Help',
-          iconName: 'help',
-          hasSubmenu: false
-        },
-        {
-          label: 'Feedback',
-          iconName: 'feedback',
-          hasSubmenu: false
-        },
-        {
-          label: 'Keyboard shortcuts',
-          iconName: 'shortcuts',
-          hasSubmenu: false
-        },
-        {
-          label: 'Restricted Mode: Off',
-          iconName: null,
-          hasSubmenu: true
-        }
-      ]
-    }
-  },
-  watch: {
-    isOpen () {
-      this.$nextTick(() => this.isOpen && this.$refs.dropdown.focus())
-    }
-  },
-  computed: {
-    dropdownClasses() {
-      return [
+      selectedMenu: 'main',
+      selectedPoints: {
+        themeId: 2,
+        langId: 5,
+        locationId: 0,
+        restrictedMode: false,
+      },
+      classes: [
         'w-48',
         'sm:w-72',
         'py-2',
@@ -138,8 +85,45 @@ export default {
         'ounded-md',
         'shadow-md',
         'focus:outline-none',
-        'z-10',
+        'z-10'
       ]
+    }
+  },
+  watch: {
+    isOpen () {
+      this.$nextTick(() => this.isOpen && this.$refs.dropdown.focus())
+    }
+  },
+  methods: {
+    toggle() {
+      this.isOpen ? this.close() : this.open()
+    },
+    open() {
+      this.isOpen = true
+    },
+    close() {
+      this.isOpen = false
+
+      setTimeout(() => this.selectedMenu = 'main', 100)
+    },
+    showMenu(selectedMenu) {
+      this.selectedMenu = selectedMenu
+    },
+    selectPoint(point) {
+      this.selectedPoints[point.name] = point.value
+    }
+  },
+  computed: {
+    menu() {
+      const menuNames = {
+        main: 'TheDropdownSettingsMain',
+        appearance: 'TheDropdownSettingsAppearance',
+        lang: 'TheDropdownSettingsLang',
+        location: 'TheDropdownSettingsLocation',
+        restricted_mode: 'TheDropdownSettingsRestrictedMode',
+      }
+
+      return menuNames[this.selectedMenu]
     }
   }
 }

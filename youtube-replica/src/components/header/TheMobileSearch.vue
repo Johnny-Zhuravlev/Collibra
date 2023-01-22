@@ -1,7 +1,11 @@
 <template>
-  <div class="fixed items-center top-2 w-full flex px-3 bg-white z-10">
-    <BaseTooltip @click="$emit('close')" text="Turn back" class="mr-2" right>
-      <BaseIcon name="arrowLeft" />
+  <div :class="classes">
+    <BaseTooltip text="Turn back" class="mr-2" right>
+      <BaseIcon
+        @click="$emit('close')"
+        name="arrowLeft"
+        class="w-5 h-5"
+      />
     </BaseTooltip>
     <TheSearch />
     <TheVoiceSearchBtn left />
@@ -15,18 +19,32 @@ import TheSearch from './TheSearch.vue'
 import TheVoiceSearchBtn from './TheVoiceSearchBtn.vue'
 
 export default {
+  name: 'TheMobileSearch',
   mounted () {
     window.addEventListener('click', this.onClick)
   },
   beforeUnmount () {
     window.removeEventListener('click', this.onClick)
   },
-  name: 'TheMobileSearch',
   components: {
     BaseTooltip,
     BaseIcon,
     TheSearch,
     TheVoiceSearchBtn
+  },
+  data() {
+    return {
+      classes: [
+        'absolute',
+        'top-2',
+        'w-full',
+        'flex',
+        'items-center',
+        'px-3',
+        'bg-white',
+        'z-10'
+      ]
+    }
   },
   methods: {
     onClick (event) {

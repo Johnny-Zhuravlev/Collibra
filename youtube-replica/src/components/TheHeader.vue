@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between w-full fixed z-30">
+  <header class="flex justify-between w-full fixed z-50">
     <div class="flex items-center lg:w-1/5 md:pl-4 pl-2">
       <button
         @click="$emit('toggleSidebar')"

@@ -23,7 +23,7 @@ export default {
         'fixed',
         'top-14',
         'bg-white',
-        'z-20',
+        'z-30',
       ]
     }
   }
