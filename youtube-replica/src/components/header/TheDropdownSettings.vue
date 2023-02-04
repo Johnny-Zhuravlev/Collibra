@@ -27,10 +27,16 @@
         :class="classes"
       >
         <component
+          v-if="selectedMenu"
           :is="menu"
-          @select-menu="showMenu"
-          @select-point="selectPoint"
           :selected-points="selectedPoints"
+          @select-point="selectPoint"
+          @close="closeMenu"
+        />
+        <TheDropdownSettingsMain
+          v-else
+          :settings-list="settingsList"
+          @select-menu="selectMenu"
         />
       </div>
     </transition>
@@ -54,7 +60,7 @@ export default {
       }
     })
   },
-  emits: ['select-menu', 'select-point'],
+  emits: ['select-menu'],
   components: {
 	  BaseTooltip,
     BaseIcon,
@@ -67,12 +73,24 @@ export default {
   data () {
     return {
       isOpen: false,
-      selectedMenu: 'main',
+      selectedMenu: null,
       selectedPoints: {
-        themeId: 2,
-        langId: 5,
-        locationId: 0,
-        restrictedMode: false,
+        theme: {
+          id: 0,
+          txt: 'Device theme'
+        },
+        lang: {
+          id: 0,
+          txt: 'Afrikaans'
+        },
+        location: {
+          id: 0,
+          txt: 'Costa-Rica'
+        },
+        restrictedMode: {
+          enabled: false,
+          txt: 'Off'
+        }
       },
       classes: [
         'w-48',
@@ -104,10 +122,13 @@ export default {
     close() {
       this.isOpen = false
 
-      setTimeout(() => this.selectedMenu = 'main', 100)
+      setTimeout(() => this.closeMenu, 100)
     },
-    showMenu(selectedMenu) {
-      this.selectedMenu = selectedMenu
+    closeMenu() {
+      this.selectMenu(null)
+    },
+    selectMenu(menuName) {
+      this.selectedMenu = menuName
     },
     selectPoint(point) {
       this.selectedPoints[point.name] = point.value
@@ -115,16 +136,73 @@ export default {
   },
   computed: {
     menu() {
-      const menuNames = {
-        main: 'TheDropdownSettingsMain',
+      const innerMenuNames = {
         appearance: 'TheDropdownSettingsAppearance',
         lang: 'TheDropdownSettingsLang',
         location: 'TheDropdownSettingsLocation',
         restricted_mode: 'TheDropdownSettingsRestrictedMode',
       }
 
-      return menuNames[this.selectedMenu]
-    }
+      return this.selectedMenu ? innerMenuNames[this.selectedMenu.id] : null
+    },
+    settingsList() {
+      return [
+        {
+          id: 'appearance',
+          label: 'Appearance: ' + this.selectedPoints.theme.txt,
+          iconName: 'appearance',
+          hasSubmenu: true
+        },
+        {
+          id: 'lang',
+          label: 'Language: ' + this.selectedPoints.lang.txt,
+          iconName: 'lang',
+          hasSubmenu: true
+        },
+        {
+          id: 'location',
+          label: 'Location: ' + this.selectedPoints.location.txt,
+          iconName: 'location',
+          hasSubmenu: true
+        },
+        {
+          id: 'settings',
+          label: 'Settings',
+          iconName: 'settings',
+          hasSubmenu: false
+        },
+        {
+          id: 'secutity_data',
+          label: 'Security Data',
+          iconName: 'security',
+          hasSubmenu: false
+        },
+        {
+          id: 'help',
+          label: 'Help',
+          iconName: 'help',
+          hasSubmenu: false
+        },
+        {
+          id: 'feedback',
+          label: 'Feedback',
+          iconName: 'feedback',
+          hasSubmenu: false
+        },
+        {
+          id: 'keyboard_shortcuts',
+          label: 'Keyboard shortcuts',
+          iconName: 'shortcuts',
+          hasSubmenu: false
+        },
+        {
+          id: 'restricted_mode',
+          label: 'Restricted Mode: ' + this.selectedPoints.restrictedMode.txt,
+          iconName: null,
+          hasSubmenu: true
+        }
+      ]
+    },
   }
 }
 </script>

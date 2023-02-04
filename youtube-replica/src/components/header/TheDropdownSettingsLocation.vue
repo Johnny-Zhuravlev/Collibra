@@ -1,7 +1,7 @@
 <template>
   <DropdownSettingsHeader
     title="Choose your location"
-    @back="$emit('select-menu', 'main')"
+    @back="$emit('close')"
   />
 
   <section class="py-2">
@@ -10,27 +10,22 @@
         v-for="(location, locationId) of locations"
         :key="locationId"
         :label="location"
-        :active="locationId === selectedPoints.locationId"
-        @click="selectPoint(locationId)"
+        :active="locationId === selectedPoints.location.id"
+        @click="selectPoint({id: locationId, txt: location})"
       />
     </ul>
   </section>
 </template>
 
 <script>
-import DropdownSettingsHeader from './DropdownSettingsHeader.vue'
-import DropdownSettingsItem from './DropdownSettingsItem.vue'
+import dropdownSubmenu from '../../mixins/dropdownSubmenu';
 
 export default {
   name: 'TheDropdownSettingsLocation',
-  components: {
-    DropdownSettingsHeader,
-    DropdownSettingsItem,
-  },
-  props: ['selectedPoints'],
-  emits: ['select-menu', 'select-point'],
+  mixins: [dropdownSubmenu],
   data() {
     return {
+      pointName: 'location',
       locations: [
         'Costa-Rica',
         'Egypt',
@@ -59,11 +54,6 @@ export default {
       ],
     }
   },
-  methods: {
-    selectPoint(locationId) {
-      this.$emit('select-point', {name: 'locationId', value: locationId})
-    }
-  }
 }
 </script>
 

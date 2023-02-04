@@ -1,7 +1,7 @@
 <template>
   <section :class="classes">
     <div class="py-2 px-2 sm:px-4 border-t border-b">
-      <div class="max-w-screen-2xl m-auto flex space-x-3 overflow-auto text-sm whitespace-norwap">
+      <div class="max-w-screen-2xl m-auto p-0 flex space-x-3 overflow-auto text-sm whitespace-norwap categories-list">
         <CategoryItem
           v-for="category in categories"
           :key="category"
@@ -66,3 +66,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.categories-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+</style>

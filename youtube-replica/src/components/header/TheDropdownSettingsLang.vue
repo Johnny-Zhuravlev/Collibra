@@ -1,7 +1,7 @@
 <template>
   <DropdownSettingsHeader
     title="Choose your language"
-    @back="$emit('select-menu', 'main')"
+    @back="$emit('close')"
   />
 
   <section class="py-2">
@@ -10,27 +10,22 @@
         v-for="(lang, langId) of langs"
         :key="langId"
         :label="lang"
-        :active="langId === selectedPoints.langId"
-        @click="selectPoint(langId)"
+        :active="langId === selectedPoints.lang.id"
+        @click="selectPoint({id: langId, txt: lang})"
       />
     </ul>
   </section>
 </template>
 
 <script>
-import DropdownSettingsHeader from './DropdownSettingsHeader.vue'
-import DropdownSettingsItem from './DropdownSettingsItem.vue'
+import dropdownSubmenu from '../../mixins/dropdownSubmenu';
 
 export default {
   name: 'TheDropdownSettingsLang',
-  components: {
-    DropdownSettingsHeader,
-    DropdownSettingsItem,
-  },
-  props: ['selectedPoints'],
-  emits: ['select-menu', 'select-point'],
+  mixins: [dropdownSubmenu],
   data() {
     return {
+      pointName: 'lang',
       langs: [
         'Afrikaans',
         'Bahasa Indonesia',
@@ -57,11 +52,6 @@ export default {
       ],
     }
   },
-  methods: {
-    selectPoint(langId) {
-      this.$emit('select-point', {name: 'langId', value: langId})
-    }
-  }
 }
 </script>
 

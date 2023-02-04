@@ -7,7 +7,10 @@
         class="w-5 h-5"
       />
     </BaseTooltip>
-    <TheSearch />
+    <TheSearch
+      :search-query="searchQuery"
+      @update-search-query="$emit('update-search-query', $event)"
+    />
     <TheVoiceSearchBtn left />
   </div>
 </template>
@@ -19,7 +22,6 @@ import TheSearch from './TheSearch.vue'
 import TheVoiceSearchBtn from './TheVoiceSearchBtn.vue'
 
 export default {
-  name: 'TheMobileSearch',
   mounted () {
     window.addEventListener('click', this.onClick)
   },
@@ -32,6 +34,8 @@ export default {
     TheSearch,
     TheVoiceSearchBtn
   },
+  props: ['searchQuery'],
+  emits: ['update-search-query'],
   data() {
     return {
       classes: [

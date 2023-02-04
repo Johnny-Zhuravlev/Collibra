@@ -19,24 +19,25 @@
     >
       <TheMobileSearch
         v-if="isMobileSearchShown"
+        :search-query="searchQuery"
+        @update-search-query="searchQuery = $event"
         @close="isMobileSearchActive = false"
         @keyup.esc="isMobileSearchActive = false"
         tabindex="-1"
         ref="mobileSearch"
       />
-      <div
+      <TheMainSearch
         v-else
-        class="hidden sm:flex items-center sm:flex-1 lg:w-1/2 max-w-screen-md p-2.5 sm:px-6 md:px-12 lg:px-0">
-        <TheSearch />
-        <TheVoiceSearchBtn />
-      </div>
+        :search-query="searchQuery"
+        @update-search-query="searchQuery = $event"
+      />
     </transition>
     <div
       class="flex items-center justify-end py-2 px-2 space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-5 lg:w-1/4"
     >
       <TheMobileVoiceSearchBtn />
       <TheMobileSearchBtn
-        @click.stop="isMobileSearchActive = true, this.$refs.mobileSearch.focus()"
+        @click.stop="(isMobileSearchActive = true), this.$refs.mobileSearch.focus()"
       />
 
       <!-- List options of app -->
@@ -50,57 +51,56 @@
 </template>
 
 <script>
-import LogoMain from './header/LogoMain.vue'
-import BaseIcon from './BaseIcon.vue'
-import TheMobileSearch from './header/TheMobileSearch.vue'
-import TheSearch from './header/TheSearch.vue'
-import TheVoiceSearchBtn from './header/TheVoiceSearchBtn.vue'
-import TheMobileVoiceSearchBtn from './header/TheMobileVoiceSearchBtn.vue'
-import TheMobileSearchBtn from './header/TheMobileSearchBtn.vue'
-import TheDropdownOptions from './header/TheDropdownOptions.vue'
-import TheDropdownSettings from './header/TheDropdownSettings.vue'
-import BtnLogin from './header/BtnLogin.vue'
+import LogoMain from "./header/LogoMain.vue";
+import BaseIcon from "./BaseIcon.vue";
+import TheMobileSearch from "./header/TheMobileSearch.vue";
+import TheMainSearch from "./header/TheMainSearch.vue";
+import TheMobileVoiceSearchBtn from "./header/TheMobileVoiceSearchBtn.vue";
+import TheMobileSearchBtn from "./header/TheMobileSearchBtn.vue";
+import TheDropdownOptions from "./header/TheDropdownOptions.vue";
+import TheDropdownSettings from "./header/TheDropdownSettings.vue";
+import BtnLogin from "./header/BtnLogin.vue";
 
 export default {
   mounted() {
-    window.addEventListener('resize', this.onResize)
-    this.onResize()
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
   },
   components: {
     LogoMain,
     BaseIcon,
     TheMobileSearch,
-    TheSearch,
-    TheVoiceSearchBtn,
+    TheMainSearch,
     TheMobileVoiceSearchBtn,
     TheMobileSearchBtn,
     TheDropdownOptions,
     TheDropdownSettings,
     BtnLogin,
-},
+  },
   emits: {
-    toggleSidebar: null
+    toggleSidebar: null,
   },
   data() {
     return {
+      searchQuery: "",
       isSmallScreen: false,
       isMobileSearchActive: false,
-    }
+    };
   },
   methods: {
     onResize() {
       if (window.innerWidth < 640) {
-        this.isSmallScreen = true
+        this.isSmallScreen = true;
       } else {
-        this.isSmallScreen = false
-        this.isMobileSearchActive = false
+        this.isSmallScreen = false;
+        this.isMobileSearchActive = false;
       }
     },
   },
   computed: {
     isMobileSearchShown() {
-      return this.isSmallScreen && this.isMobileSearchActive
-    }
+      return this.isSmallScreen && this.isMobileSearchActive;
+    },
   },
-}
+};
 </script>

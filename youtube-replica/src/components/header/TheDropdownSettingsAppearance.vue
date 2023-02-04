@@ -1,7 +1,7 @@
 <template>
   <DropdownSettingsHeader
     title="Appearance"
-    @back="$emit('select-menu', 'main')"
+    @back="$emit('close')"
   />
 
   <section class="pb-2">
@@ -13,39 +13,29 @@
         v-for="(theme, themeId) of themes"
         :key="themeId"
         :label="theme"
-        :active="themeId === selectedPoints.themeId"
-        @click="selectPoint(themeId)"
+        :active="themeId === selectedPoints.theme.id"
+        @click="selectPoint({id: themeId, txt: theme})"
       />
     </ul>
   </section>
 </template>
 
 <script>
-import DropdownSettingsHeader from './DropdownSettingsHeader.vue'
-import DropdownSettingsItem from './DropdownSettingsItem.vue'
+import dropdownSubmenu from '../../mixins/dropdownSubmenu';
 
 export default {
   name: 'TheDropdownSettingsAppearance',
-  components: {
-    DropdownSettingsHeader,
-    DropdownSettingsItem,
-  },
-  props: ['selectedPoints'],
-  emits: ['select-menu', 'select-point'],
+  mixins: [dropdownSubmenu],
   data() {
     return {
+      pointName: 'theme',
       themes: [
-        'Use device theme',
+        'Device theme',
         'Dark theme',
         'Light theme',
       ],
     }
   },
-  methods: {
-    selectPoint(themeId) {
-      this.$emit('select-point', {name: 'themeId', value: themeId})
-    }
-  }
 }
 </script>
 

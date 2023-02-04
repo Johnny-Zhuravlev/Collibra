@@ -31,72 +31,12 @@ export default {
 	components: {
 		DropdownSettingsItem,
 	},
-  props: ['selectedPoints'],
-  emits: ['select-menu', 'select-point'],
-	data() {
-		return {
-			settingsList: [
-        {
-          id: 'appearance',
-          label: 'Appearance: Device theme',
-          iconName: 'appearance',
-          hasSubmenu: true
-        },
-        {
-          id: 'lang',
-          label: 'Language: English',
-          iconName: 'lang',
-          hasSubmenu: true
-        },
-        {
-          id: 'location',
-          label: 'Location: Costa-Rica',
-          iconName: 'location',
-          hasSubmenu: true
-        },
-        {
-          id: 'settings',
-          label: 'Settings',
-          iconName: 'settings',
-          hasSubmenu: false
-        },
-        {
-          id: 'secutity_data',
-          label: 'Security Data',
-          iconName: 'security',
-          hasSubmenu: false
-        },
-        {
-          id: 'help',
-          label: 'Help',
-          iconName: 'help',
-          hasSubmenu: false
-        },
-        {
-          id: 'feedback',
-          label: 'Feedback',
-          iconName: 'feedback',
-          hasSubmenu: false
-        },
-        {
-          id: 'keyboard_shortcuts',
-          label: 'Keyboard shortcuts',
-          iconName: 'shortcuts',
-          hasSubmenu: false
-        },
-        {
-          id: 'restricted_mode',
-          label: 'Restricted Mode: Off',
-          iconName: null,
-          hasSubmenu: true
-        }
-      ],
-		}
-	},
+  props: ['settingsList'],
+  emits: ['select-menu'],
   methods: {
     selectMenu(item) {
       if (item.hasSubmenu) {
-        this.$emit('select-menu', item.id)
+        this.$emit('select-menu', item)
       }
     }
   }

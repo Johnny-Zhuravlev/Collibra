@@ -1,6 +1,10 @@
 <template>
   <li>
-    <a class="flex items-center px-3 py-2 text-sm hover:bg-gray-100">
+    <a
+      @click.prevent
+      href="#"
+      :class="classes"
+    >
       <span v-if="isIconShown" class="flex mr-3 text-gray-500">
         <BaseIcon
           :name="iconName"
@@ -35,6 +39,18 @@ export default {
   },
   components: {
     BaseIcon
+  },
+  data() {
+    return {
+      classes: [
+        'flex',
+        'items-center',
+        'px-3',
+        'py-2',
+        'text-sm',
+        'hover:bg-gray-100'
+      ]
+    }
   },
   computed: {
     isIconShown() {

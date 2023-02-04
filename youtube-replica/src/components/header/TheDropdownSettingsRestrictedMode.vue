@@ -1,7 +1,7 @@
 <template>
   <DropdownSettingsHeader
     title="Restricted Mode"
-    @back="$emit('select-menu', 'main')"
+    @back="$emit('close')"
   />
 
   <section class="p-3 space-y-3 text-xs font-semibold">
@@ -16,26 +16,33 @@
       <input
         id="restricted_mode"
         type="checkbox"
-        :checked="selectedPoints.restrictedMode"
+        :checked="selectedPoints.restrictedMode.enabled"
         @input="selectPoint"
       />
     </div>
+    <template v-if="selectedPoints.restrictedMode.enabled">
+      <p>
+        Restricted Mode lock prevents others from changing the Restricted Mode settings on this browser
+      </p>
+      <p>
+        Lock Restricted Mode on this browser
+      </p>
+    </template>
   </section>
 </template>
 
 <script>
-import DropdownSettingsHeader from './DropdownSettingsHeader.vue'
+import dropdownSubmenu from '../../mixins/dropdownSubmenu';
 
 export default {
   name: 'TheDropdownSettingsRestrictedMode',
-  components: {
-    DropdownSettingsHeader,
-  },
-  props: ['selectedPoints'],
-  emits: ['select-menu', 'select-point'],
+  mixins: [dropdownSubmenu],
   methods: {
     selectPoint($event) {
-      this.$emit('select-point', {name: 'restrictedMode', value: $event.target.checked})
+      const enabled = $event.target.checked
+      const value = { enabled, txt: enabled ? 'On' : 'Off' }
+
+      this.$emit('select-point', { name: 'restrictedMode', value })
     }
   }
 }

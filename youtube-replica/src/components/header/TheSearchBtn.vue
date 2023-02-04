@@ -15,9 +15,9 @@ export default {
     BaseTooltip,
     BaseIcon,
   },
-  computed: {
-    btnClasses() {
-      return [
+  data() {
+    return {
+      btnClasses: [
         'h-full',
         'flex',
         'items-center ',
