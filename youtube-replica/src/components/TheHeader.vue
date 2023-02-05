@@ -1,6 +1,6 @@
 <template>
   <header :class="headerClasses">
-    <div :class="headerRightClasses">
+    <div :class="headerLeftClasses">
       <button
         @click="$emit('toggleSidebar')"
         class="sm:pl-2 md:pr-6 pr-2 focus:outline-none"
@@ -9,6 +9,7 @@
       </button>
       <LogoMain />
     </div>
+
     <transition
       enter-from-class="transition opacity-0 scale-60"
       enter-active-class="transition ease-out duration-500"
@@ -23,6 +24,7 @@
         @update-search-query="searchQuery = $event"
         @close="isMobileSearchActive = false"
         @keyup.esc="isMobileSearchActive = false"
+        @open-voice-modal="isVoiceModalOpen = true"
         tabindex="-1"
         ref="mobileSearch"
       />
@@ -30,11 +32,12 @@
         v-else
         :search-query="searchQuery"
         @update-search-query="searchQuery = $event"
+        @open-voice-modal="isVoiceModalOpen = true"
       />
     </transition>
-    <div :class="headerLeftClasses"
-    >
-      <TheMobileVoiceSearchBtn />
+
+    <div :class="headerRightClasses">
+      <TheMobileVoiceSearchBtn @open-voice-modal="isVoiceModalOpen = true" />
       <TheMobileSearchBtn
         @click.stop="(isMobileSearchActive = true), this.$refs.mobileSearch.focus()"
       />
@@ -47,18 +50,35 @@
       <BtnLogin />
     </div>
   </header>
+
+  <teleport to="body">
+    <transition
+      enter-from-class="transition opacity-0"
+      enter-active-class="transition ease-out duration-150"
+      enter-to-class="opacity-100"
+      leave-from-class="opacity-100"
+      leave-active-class="transition ease-in duration-100"
+      leave-to-class="opacity-0"
+    >
+      <BaseModal
+        v-if="isVoiceModalOpen"
+        @close="isVoiceModalOpen = false"
+      />
+    </transition>
+  </teleport>
 </template>
 
 <script>
-import LogoMain from "./header/LogoMain.vue";
-import BaseIcon from "./BaseIcon.vue";
-import TheMobileSearch from "./header/TheMobileSearch.vue";
-import TheMainSearch from "./header/TheMainSearch.vue";
-import TheMobileVoiceSearchBtn from "./header/TheMobileVoiceSearchBtn.vue";
-import TheMobileSearchBtn from "./header/TheMobileSearchBtn.vue";
-import TheDropdownOptions from "./header/TheDropdownOptions.vue";
-import TheDropdownSettings from "./header/TheDropdownSettings.vue";
-import BtnLogin from "./header/BtnLogin.vue";
+import LogoMain from './header/LogoMain.vue';
+import BaseIcon from './BaseIcon.vue';
+import TheMobileSearch from './header/TheMobileSearch.vue';
+import TheMainSearch from './header/TheMainSearch.vue';
+import TheMobileVoiceSearchBtn from './header/TheMobileVoiceSearchBtn.vue';
+import TheMobileSearchBtn from './header/TheMobileSearchBtn.vue';
+import TheDropdownOptions from './header/TheDropdownOptions.vue';
+import TheDropdownSettings from './header/TheDropdownSettings.vue';
+import BtnLogin from './header/BtnLogin.vue';
+import BaseModal from './BaseModal.vue';
 
 export default {
   mounted() {
@@ -75,12 +95,14 @@ export default {
     TheDropdownOptions,
     TheDropdownSettings,
     BtnLogin,
+    BaseModal
   },
   emits: {
     toggleSidebar: null,
   },
   data() {
     return {
+      isVoiceModalOpen: false,
       searchQuery: '',
       isSmallScreen: false,
       isMobileSearchActive: false,
@@ -91,14 +113,14 @@ export default {
         'fixed',
         'z-50'
       ],
-      headerRightClasses: [
+      headerLeftClasses: [
         'flex',
         'items-center',
         'lg:w-1/5',
         'md:pl-4',
         'pl-2'
       ],
-      headerLeftClasses: [
+      headerRightClasses: [
         'flex',
         'items-center',
         'justify-end',

@@ -11,7 +11,7 @@
       :search-query="searchQuery"
       @update-search-query="$emit('update-search-query', $event)"
     />
-    <TheVoiceSearchBtn left />
+    <TheVoiceSearchBtn @click="$emit('open-voice-modal')" left />
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     TheVoiceSearchBtn
   },
   props: ['searchQuery'],
-  emits: ['update-search-query'],
+  emits: ['update-search-query', 'open-voice-modal'],
   data() {
     return {
       classes: [
