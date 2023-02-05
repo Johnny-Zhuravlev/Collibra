@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import BaseTooltip from '../BaseTooltip.vue'
-import BaseIcon from '../BaseIcon.vue'
+import BaseTooltip from '../../BaseTooltip.vue'
+import BaseIcon from '../../BaseIcon.vue'
 
 export default {
   name: 'TheMobileVoiceSearchBtn',

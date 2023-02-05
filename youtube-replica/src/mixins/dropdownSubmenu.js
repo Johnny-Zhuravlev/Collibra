@@ -1,5 +1,5 @@
-import DropdownSettingsHeader from '../components/header/DropdownSettingsHeader.vue'
-import DropdownSettingsItem from '../components/header/DropdownSettingsItem.vue'
+import DropdownSettingsHeader from '../components/header/dropdownSettings/DropdownSettingsHeader.vue'
+import DropdownSettingsItem from '../components/header/dropdownSettings/DropdownSettingsItem.vue'
 
 export default {
   components: {

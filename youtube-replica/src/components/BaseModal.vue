@@ -1,16 +1,12 @@
 <template>
   <div :class="classes" @click.self="close" @keydown.esc="close" tabindex="-1">
-    <div class="max-w-lg mt-20 mx-4 bg-white rounded-md">
-      <div class="p-2 text-right">
+    <div class="max-w-30 mt-20 mx-4 bg-white rounded-md">
+      <div class="flex justify-between items-center p-4">
+        <h3 class="p-2 text-xl font-semibold text-black">{{ title }}</h3>
         <BaseModalBtnClose @click="close" />
       </div>
       <div class="p-6">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint, dolor
-        ipsum. Illum ullam vero numquam, totam pariatur quos possimus error
-        dolor reiciendis dolorem deserunt dolorum quis aliquid ducimus quaerat.
-        Autem distinctio, quasi natus explicabo aut vero at nihil porro mollitia
-        officia? Molestias, omnis accusantium. Neque ratione repellendus a
-        similique cupiditate.
+        <slot />
       </div>
     </div>
   </div>
@@ -26,6 +22,7 @@ export default {
   components: {
     BaseModalBtnClose
   },
+  props: ['title'],
   emits: ['close'],
   data() {
 		return {

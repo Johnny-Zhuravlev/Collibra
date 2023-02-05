@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import BaseTooltip from '../BaseTooltip.vue'
-import BaseIcon from '../BaseIcon.vue'
+import BaseTooltip from '../../BaseTooltip.vue'
+import BaseIcon from '../../BaseIcon.vue'
 import TheDropdownSettingsMain from './TheDropdownSettingsMain.vue'
 import TheDropdownSettingsAppearance from './TheDropdownSettingsAppearance.vue'
 import TheDropdownSettingsLang from './TheDropdownSettingsLang.vue'

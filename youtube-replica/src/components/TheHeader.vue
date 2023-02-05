@@ -60,10 +60,7 @@
       leave-active-class="transition ease-in duration-100"
       leave-to-class="opacity-0"
     >
-      <BaseModal
-        v-if="isVoiceModalOpen"
-        @close="isVoiceModalOpen = false"
-      />
+      <TheModalVoiceSearch v-if="isVoiceModalOpen" @close="isVoiceModalOpen = false" />
     </transition>
   </teleport>
 </template>
@@ -71,14 +68,14 @@
 <script>
 import LogoMain from './header/LogoMain.vue';
 import BaseIcon from './BaseIcon.vue';
-import TheMobileSearch from './header/TheMobileSearch.vue';
-import TheMainSearch from './header/TheMainSearch.vue';
-import TheMobileVoiceSearchBtn from './header/TheMobileVoiceSearchBtn.vue';
-import TheMobileSearchBtn from './header/TheMobileSearchBtn.vue';
-import TheDropdownOptions from './header/TheDropdownOptions.vue';
-import TheDropdownSettings from './header/TheDropdownSettings.vue';
+import TheMobileSearch from './header/search/TheMobileSearch.vue';
+import TheMainSearch from './header/search/TheMainSearch.vue';
+import TheMobileVoiceSearchBtn from './header/search/TheMobileVoiceSearchBtn.vue';
+import TheMobileSearchBtn from './header/search/TheMobileSearchBtn.vue';
+import TheDropdownOptions from './header/dropdownOptions/TheDropdownOptions.vue';
+import TheDropdownSettings from './header/dropdownSettings/TheDropdownSettings.vue';
 import BtnLogin from './header/BtnLogin.vue';
-import BaseModal from './BaseModal.vue';
+import TheModalVoiceSearch from './modals/TheModalVoiceSearch.vue';
 
 export default {
   mounted() {
@@ -95,7 +92,7 @@ export default {
     TheDropdownOptions,
     TheDropdownSettings,
     BtnLogin,
-    BaseModal
+    TheModalVoiceSearch
   },
   emits: {
     toggleSidebar: null,

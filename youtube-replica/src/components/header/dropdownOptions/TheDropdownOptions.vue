@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import BaseTooltip from "../BaseTooltip.vue";
-import BaseIcon from '../BaseIcon.vue'
+import BaseTooltip from "../../BaseTooltip.vue";
+import BaseIcon from '../../BaseIcon.vue'
 import DropdownOptionsItem from './DropdownOptionsItem.vue';
 
 export default {

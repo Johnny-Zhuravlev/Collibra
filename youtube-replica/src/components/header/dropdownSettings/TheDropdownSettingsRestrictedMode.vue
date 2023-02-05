@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import dropdownSubmenu from '../../mixins/dropdownSubmenu';
+import dropdownSubmenu from '../../../mixins/dropdownSubmenu';
 
 export default {
   name: 'TheDropdownSettingsRestrictedMode',

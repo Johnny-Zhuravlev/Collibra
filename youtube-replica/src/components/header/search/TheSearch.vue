@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import TheSearchInput from "./TheSearchInput.vue";
-import TheSearchPrompts from "./TheSearchPrompts.vue";
-import TheSearchBtn from "./TheSearchBtn.vue";
+import TheSearchInput from './TheSearchInput.vue';
+import TheSearchPrompts from './TheSearchPrompts.vue';
+import TheSearchBtn from './TheSearchBtn.vue';
 
  export default {
   mounted() {

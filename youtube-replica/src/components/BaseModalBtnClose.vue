@@ -1,5 +1,5 @@
 <template>
-  <button class="p-2 focus:outline-none">
+  <button :class="classes">
     <BaseIcon name="x" />
   </button>
 </template>
@@ -10,6 +10,18 @@ import BaseIcon from './BaseIcon.vue';
 export default {
   components: {
 		BaseIcon
-	}
+	},
+  data() {
+    return {
+      classes: [
+        'p-2',
+        'text-black',
+        'outline-none',
+        'transform',
+        'transition-all',
+        'hover:rotate-90'
+      ]
+    }
+  }
 }
 </script>

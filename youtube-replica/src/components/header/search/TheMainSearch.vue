@@ -15,7 +15,7 @@ import TheVoiceSearchBtn from './TheVoiceSearchBtn.vue';
 export default {
   components: {
     TheSearch,
-    TheVoiceSearchBtn,
+    TheVoiceSearchBtn
   },
   props: ['searchQuery'],
   emits: ['update-search-query', 'open-voice-modal', 'close'],
