@@ -1,6 +1,6 @@
 <template>
-  <header class="flex justify-between w-full fixed z-50">
-    <div class="flex items-center lg:w-1/5 md:pl-4 pl-2">
+  <header :class="headerClasses">
+    <div :class="headerRightClasses">
       <button
         @click="$emit('toggleSidebar')"
         class="sm:pl-2 md:pr-6 pr-2 focus:outline-none"
@@ -32,8 +32,7 @@
         @update-search-query="searchQuery = $event"
       />
     </transition>
-    <div
-      class="flex items-center justify-end py-2 px-2 space-x-1 sm:space-x-2 md:space-x-3 lg:space-x-5 lg:w-1/4"
+    <div :class="headerLeftClasses"
     >
       <TheMobileVoiceSearchBtn />
       <TheMobileSearchBtn
@@ -82,10 +81,36 @@ export default {
   },
   data() {
     return {
-      searchQuery: "",
+      searchQuery: '',
       isSmallScreen: false,
       isMobileSearchActive: false,
-    };
+      headerClasses: [
+        'flex',
+        'justify-between',
+        'w-full',
+        'fixed',
+        'z-50'
+      ],
+      headerRightClasses: [
+        'flex',
+        'items-center',
+        'lg:w-1/5',
+        'md:pl-4',
+        'pl-2'
+      ],
+      headerLeftClasses: [
+        'flex',
+        'items-center',
+        'justify-end',
+        'py-2',
+        'px-2',
+        'space-x-1',
+        'sm:space-x-2',
+        'md:space-x-3',
+        'lg:space-x-5',
+        'lg:w-1/4'
+      ]
+    }
   },
   methods: {
     onResize() {

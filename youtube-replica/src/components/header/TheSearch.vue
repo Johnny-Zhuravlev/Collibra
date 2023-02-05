@@ -32,12 +32,10 @@ import TheSearchBtn from "./TheSearchBtn.vue";
   mounted() {
     window.addEventListener('click', event => {
       if (!this.$el.contains(event.target)) {
-        this.handleClick()
+        this.onClickAndResize()
       }
     })
-  },
-  beforeUnmount() {
-    window.removeEventListener('click', this.handleClick)
+    window.addEventListener('resize', this.onClickAndResize)
   },
   components: {
     TheSearchInput,
@@ -101,7 +99,7 @@ import TheSearchBtn from "./TheSearchBtn.vue";
     toggleSearchPrompts(isSearchInputActive) {
       this.isSearchPromptsVisible = isSearchInputActive
     },
-    handleClick() {
+    onClickAndResize() {
       this.toggleSearchPrompts(false)
     },
     handlePrevSearchResult() {
@@ -134,9 +132,9 @@ import TheSearchBtn from "./TheSearchBtn.vue";
         : this.activeQuery
     },
     selectSearchResult() {
-      this.query = this.activeSearchResultId
-        ? this.searchResults[this.activeSearchResultId]
-        : this.query
+      this.query = this.activeSearchResultId === null
+        ? this.query
+        : this.searchResults[this.activeSearchResultId]
 
       this.toggleSearchPrompts(false)
       this.updateSearchResults()
@@ -144,5 +142,3 @@ import TheSearchBtn from "./TheSearchBtn.vue";
   }
 }
 </script>
-
-<style scoped></style>
