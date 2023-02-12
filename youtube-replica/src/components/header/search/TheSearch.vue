@@ -17,6 +17,7 @@
         @search-result-mouse-enter="activeSearchResultId = $event"
         @search-result-mouse-leave="activeSearchResultId = null"
         @search-result-click="selectSearchResult"
+        @open-modal-search-report-predictions="isSearchPromptsVisible = false"
       />
     </div>
     <TheSearchBtn @click.stop="selectSearchResult" />
