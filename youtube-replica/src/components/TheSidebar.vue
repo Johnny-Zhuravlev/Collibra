@@ -1,5 +1,6 @@
 <template>
   <aside
+    class="sidebar"
     :class="classes"
   >
     <SidebarContent />
@@ -19,6 +20,7 @@ export default {
         'w-60',
         'max-h-screen',
         'overflow-auto',
+        'px-2',
         'pb-12',
         'fixed',
         'top-14',
@@ -29,3 +31,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.sidebar::-webkit-scrollbar {
+
+}
+.sidebar::-webkit-scrollbar-track {
+
+}
+.sidebar::-webkit-scrollbar-thumb {
+
+}
+</style>

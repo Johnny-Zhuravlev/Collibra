@@ -5,6 +5,29 @@
       :search-predictions="searchPredictions"
     />
 
+    <p class="mt-5 text-xs text-gray-400">The selected predictions are:</p>
+    <div class="space-y-2 mt-4 text-black text-sm">
+      <div
+        v-for="(label, i) in reportedVariants"
+        :key="label"
+        class="flex items-center"
+      >
+        <input
+          class="w-5 h-5 cursor-pointer focus:outline-none"
+          type="radio"
+          :id="`search-prediction-reported-${i}`"
+          :value="label"
+          v-model="selectedSearchPredictionReported"
+        />
+        <label
+          class="w-5 h-5 flex-grow pl-2 cursor-pointer"
+          :for="`search-prediction-reported-${i}`"
+        >
+          {{ label }}
+        </label>
+      </div>
+    </div>
+
     <template #footer="{close}">
       <button
         :class="btnClasses"
@@ -24,23 +47,19 @@ export default {
     BaseModal,
     TheSearchPredictionsList
   },
+  props: {
+    searchPredictions: Array
+  },
   data() {
     return {
       selectedSearchPredictions: [],
-      searchPredictions: [
-        'new york cars',
-        'new york streets',
-        'new york culture',
-        'new york architecture',
-        'new york basketball teams',
-        'new york accent',
-        'new york movies',
-        'new york jazz bands',
-        'new york rappers',
-        'new york parks',
-        'new york mornings',
-        'new york clubs',
-        'new york bars'
+      selectedSearchPredictionReported: null,
+      reportedVariants: [
+        'Hateful',
+        'Sexual Explicit',
+        'Violent',
+        'Dangerous and harmful activity',
+        'Other'
       ],
       btnClasses: [
         'py-2.5',
