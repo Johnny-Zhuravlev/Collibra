@@ -1,6 +1,14 @@
 <template>
-  <div :class="classes" @click.self="close" @keydown.esc="close" tabindex="-1">
-    <div class="max-w-30 mt-20 mx-4 bg-white rounded-md">
+  <div
+    :class="classes"
+    @click.self="close"
+    @keydown.esc="close"
+    tabindex="-1"
+  >
+    <div
+      class="max-w-30 mt-20 mx-4 bg-white rounded-md overflow-auto"
+      style="max-height: calc(90vh - 64px)"
+    >
       <div class="flex justify-between items-center px-4 pt-4">
         <h3 class="mr-48 px-2 text-xl font-semibold text-black">{{ title }}</h3>
         <BaseModalBtnClose v-if="hasCloseBtn" @click="close" />

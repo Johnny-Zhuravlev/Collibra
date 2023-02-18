@@ -6,26 +6,17 @@
     />
 
     <p class="mt-5 text-xs text-gray-400">The selected predictions are:</p>
-    <div class="space-y-2 mt-4 text-black text-sm">
-      <div
-        v-for="(label, i) in reportedVariants"
-        :key="label"
-        class="flex items-center"
-      >
-        <input
-          class="w-5 h-5 cursor-pointer focus:outline-none"
-          type="radio"
-          :id="`search-prediction-reported-${i}`"
-          :value="label"
-          v-model="selectedSearchPredictionReported"
-        />
-        <label
-          class="w-5 h-5 flex-grow pl-2 cursor-pointer"
-          :for="`search-prediction-reported-${i}`"
-        >
-          {{ label }}
-        </label>
-      </div>
+    <TheSearchPredictionsCategories
+      v-model="selectedSearchPredictionReported"
+      :reported-variants="reportedVariants"
+    />
+
+    <div class="mt-5">
+      <textarea
+        class="w-full p-2 pb-5 border border-gray-300 resize-none focus:outline-none"
+        v-model="searchPredictionsDetails"
+        placeholder="Provide additional details (optional)"
+      />
     </div>
 
     <template #footer="{close}">
@@ -41,11 +32,13 @@
 <script>
 import BaseModal from '../BaseModal.vue'
 import TheSearchPredictionsList from '../header/search/TheSearchPredictionsList.vue'
+import TheSearchPredictionsCategories from '../header/search/TheSearchPredictionsCategories.vue'
 
 export default {
   components: {
     BaseModal,
-    TheSearchPredictionsList
+    TheSearchPredictionsList,
+    TheSearchPredictionsCategories
   },
   props: {
     searchPredictions: Array
@@ -54,6 +47,7 @@ export default {
     return {
       selectedSearchPredictions: [],
       selectedSearchPredictionReported: null,
+      searchPredictionsDetails: '',
       reportedVariants: [
         'Hateful',
         'Sexual Explicit',
